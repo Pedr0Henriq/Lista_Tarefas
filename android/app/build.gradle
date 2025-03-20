@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.application"
+    id "com.google.gms.google-services" // Google Services
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.lista_tarefas"
+    compileSdk = 34 // Defina manualmente a versão correta
+    ndkVersion = "27.0.12077973"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.lista_tarefas"
+        minSdk 23 // Aumente para evitar problemas
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+        multiDexEnabled true // Corrigido
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.7.1') // Garante compatibilidade
+    implementation 'com.google.firebase:firebase-analytics'
+}
